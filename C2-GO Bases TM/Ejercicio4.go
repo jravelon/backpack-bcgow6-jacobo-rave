@@ -51,7 +51,7 @@ func operationsSelector(operation string) (func(grades []float64) float64, error
 	case average:
 		return calcAverage, nil
 	}
-	return nil, errors.New("Invalid operation")
+	return nil, errors.New("Invalid operations")
 }
 
 func calculate(operation string, grades ...float64) float64 {
