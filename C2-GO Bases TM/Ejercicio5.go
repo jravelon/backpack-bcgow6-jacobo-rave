@@ -6,79 +6,58 @@ import (
 )
 
 const (
-	dog       = "dog"
-	cat       = "cat"
-	hamster   = "hamster"
-	tarantula = "tarantura"
+	dog     = "dog"
+	cat     = "cat"
+	hamster = "hamster"
+	spider  = "spider"
 )
 
-func dogFunc(quantity int) float64 {
-	return float64(quantity) * 10
+func feedDog(cantity float64) float64 {
+	return float64(cantity) * 10
+}
+func feedCat(cantity float64) float64 {
+	return float64(cantity) * 5
+}
+func feedHamster(cantity float64) float64 {
+	return float64(cantity) * 0.25
+}
+func feedSpider(cantity float64) float64 {
+	return float64(cantity) * 0.15
 }
 
-func catFunc(quantity int) float64 {
-	return float64(quantity) * 5
-}
-
-func hamsterFunc(quantity int) float64 {
-	return float64(quantity) * 0.250
-}
-
-func tarantulaFunc(quantity int) float64 {
-	return float64(quantity) * 0.150
-}
-
-func Animal(option string) (func(quantity int) float64, error) {
-	switch option {
+func tipoAnimal(name string) (func(cantity float64) float64, error) {
+	switch name {
 	case dog:
-		return dogFunc, nil
+		return feedDog, nil
 	case cat:
-		return catFunc, nil
+		return feedCat, nil
 	case hamster:
-		return hamsterFunc, nil
-	case tarantula:
-		return tarantulaFunc, nil
+		return feedHamster, nil
+	case spider:
+		return feedSpider, nil
+	default:
+		return nil, errors.New("Animal " + name + " don't exist")
 	}
-	return nil, errors.New("Animal " + option + " don't exist")
+}
+
+func tipoAnimalCantity(name string, n float64) (float64, error) {
+	animal, err := tipoAnimal(name)
+	if err == nil {
+		return animal(n), nil
+	} else {
+		fmt.Println("Animal " + name + " don't exist")
+	}
+	return 0, nil
 }
 
 func main() {
-	animalDog, msg1 := Animal(dog)
-	animalCat, msg2 := Animal(cat)
-	animalHams, msg3 := Animal(hamster)
-	animalTaran, msg4 := Animal(tarantula)
-	animalBird, msg5 := Animal("Bird")
+	var totalCantity float64 = 0
+	cantity1, _ := tipoAnimalCantity(dog, 5)
+	cantity2, _ := tipoAnimalCantity(cat, 4)
+	cantity3, _ := tipoAnimalCantity(hamster, 4)
+	cantity4, _ := tipoAnimalCantity(spider, 1)
+	cantity5, _ := tipoAnimalCantity("pajaro", 5)
+	totalCantity += cantity1 + cantity2 + cantity3 + cantity4 + cantity5
+	fmt.Println("El total de Kg de comida a comprar es: ", totalCantity)
 
-	var amount float64 = 0
-	if msg1 == nil {
-		amount += animalDog(5)
-	} else {
-		fmt.Println(msg1)
-	}
-
-	if msg2 == nil {
-		amount += animalCat(4)
-	} else {
-		fmt.Println(msg2)
-	}
-
-	if msg3 == nil {
-		amount += animalHams(4)
-	} else {
-		fmt.Println(msg3)
-	}
-
-	if msg4 == nil {
-		amount += animalTaran(1)
-	} else {
-		fmt.Println(msg4)
-	}
-
-	if msg5 == nil {
-		amount += animalBird(5)
-	} else {
-		fmt.Println(msg5)
-	}
-
-	fmt.Printf("Total de comida: %v\n", amount)
 }

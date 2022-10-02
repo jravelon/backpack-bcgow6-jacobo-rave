@@ -6,59 +6,62 @@ import (
 )
 
 const (
-	minimum = "minimum"
+	min     = "minimum"
 	average = "average"
-	maximum = "maximum"
+	max     = "maximum"
 )
 
-func calcMinimum(grades []float64) float64 {
-	min := -1.0
-	for _, grade := range grades {
-		if min == -1 {
-			min = grade
+func minim(nums ...float64) float64 {
+	var mini float64 = -1
+	for _, v := range nums {
+		if mini == -1 {
+			mini = v
 		}
-		if grade < min {
-			min = grade
-		}
-	}
-	return min
-}
-
-func calcAverage(grades []float64) float64 {
-	avg := 0.0
-	for _, grade := range grades {
-		avg = avg + grade
-	}
-	return avg / float64(len(grades))
-}
-
-func calcMax(grades []float64) float64 {
-	max := 0.0
-	for _, grade := range grades {
-		if grade > max {
-			max = grade
+		if v < mini {
+			mini = v
 		}
 	}
-	return max
+	return mini
 }
 
-func operationsSelector(operation string) (func(grades []float64) float64, error) {
-	switch operation {
-	case minimum:
-		return calcMinimum, nil
-	case maximum:
-		return calcMax, nil
+func maxi(nums ...float64) float64 {
+	var maxim float64 = 0
+	for _, v := range nums {
+		if v > maxim {
+			maxim = v
+		}
+	}
+	return maxim
+}
+
+func averag(nums ...float64) float64 {
+	var average float64 = 0
+	for _, v := range nums {
+		average += v
+	}
+	return average / float64(len(nums))
+}
+
+func operacion(op string) (func(num ...float64) float64, error) {
+	switch op {
+	case min:
+		return minim, nil
+	case max:
+		return maxi, nil
 	case average:
-		return calcAverage, nil
+		return averag, nil
+	default:
+		return nil, errors.New("Invalid operator")
 	}
-	return nil, errors.New("Invalid operations")
-}
-
-func calculate(operation string, grades ...float64) float64 {
-	oper, _ := operationsSelector(operation)
-	return oper(grades)
 }
 
 func main() {
-	fmt.Println(calculate(average, 1.0, 2.0, 3.0))
+
+	minFunc, _ := operacion(min)
+	averFunc, _ := operacion(average)
+	maxFunc, _ := operacion(max)
+
+	fmt.Println(minFunc(1, 2, 3, 4))
+	fmt.Println(averFunc(1, 2, 3, 4))
+	fmt.Println(maxFunc(1, 2, 3, 4))
 }
