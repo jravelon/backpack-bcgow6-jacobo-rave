@@ -1,0 +1,14 @@
+{
+    "id": 1000767823,
+    "nombre": "Jacobo",
+    "apellido": "Rave",
+    "email:": "jacobo.rave@mercadolibre.com.co",
+    "edad": 19,
+    "altura": 1.85,
+    "activo": true,
+    "fechaCreacion":{
+        "año": 2022,
+        "mes": "Octubre",
+        "día": 3
+    }
+}
