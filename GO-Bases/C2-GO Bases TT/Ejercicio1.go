@@ -2,22 +2,48 @@ package main
 
 import "fmt"
 
-type student struct {
-	name     string
-	lastName string
-	dni      string
-	date     string
+type Alumn interface {
+	getName() string
+	getLastName() string
+	getDNI() string
+	getDate() string
 }
 
-func (s student) details() {
+type Student struct {
+	Name     string
+	LastName string
+	DNI      string
+	Date     string
+}
 
-	fmt.Printf("Nombre: %v\n", s.name)
-	fmt.Printf("Apellido: %v\n", s.lastName)
-	fmt.Printf("DNI: %v\n", s.dni)
-	fmt.Printf("Fecha: %v\n", s.date)
+func (alumn Student) getName() string {
+	return alumn.Name
+}
+
+func (alumn Student) getLastName() string {
+	return alumn.LastName
+}
+
+func (alumn Student) getDNI() string {
+	return alumn.DNI
+}
+
+func (alumn Student) getDate() string {
+	return alumn.Date
+}
+
+func detalle(a Alumn) string {
+	var infoStudent string
+	infoStudent = ("Nombre: " + a.getName() + "\nApellido: " + a.getLastName() + "\nDNI: " + a.getDNI() + "\nFecha: " + a.getDate())
+	return infoStudent
 }
 
 func main() {
-	s := student{"Jacobo", "rave", "10", "13 marzo"}
-	s.details()
+	student := Student{
+		Name:     "John",
+		LastName: "Doe",
+		DNI:      "10",
+		Date:     "14 julio 2022",
+	}
+	fmt.Println(detalle(student))
 }
