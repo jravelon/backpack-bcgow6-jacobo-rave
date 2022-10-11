@@ -36,26 +36,11 @@ func GetAll(ctx *gin.Context) {
 				Día: 3,
 			},
 		},
-		{
-			Id:       1212,
-			Nombre:   "J",
-			Apellido: "R",
-			Email:    "j.r@mercadolibre.com.co",
-			Edad:     19,
-			Altura:   1.85,
-			Activo:   true,
-			FechaCreacion: Fecha{
-				Año: 2022,
-				Mes: "Octubre",
-				Día: 3,
-			},
-		},
 	}
 	ctx.JSON(200, UsersEj)
 }
 
 func main() {
-
 	router := gin.Default()
 
 	router.GET("/", func(ctx *gin.Context) {
