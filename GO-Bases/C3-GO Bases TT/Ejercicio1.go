@@ -2,36 +2,43 @@ package main
 
 import "fmt"
 
-type user struct {
-	name     string
-	age      int
-	mail     string
-	password string
+type User struct {
+	Name     string
+	Surname  string
+	Age      int
+	Email    string
+	Password string
 }
 
-func (u *user) setName(name string) {
-	u.name = name
+func (u *User) ChangeName(newName, newSurname string) {
+	u.Name = newName
+	u.Surname = newSurname
 }
 
-func (u *user) setAge(age int) {
-	u.age = age
+func (u *User) ChangeAge(newAge int) {
+	u.Age = newAge
 }
 
-func (u *user) setMail(mail string) {
-	u.mail = mail
+func (u *User) ChangeEmail(newEmail string) {
+	u.Email = newEmail
 }
 
-func (u *user) setPassword(password string) {
-	u.password = password
+func (u *User) ChangePassword(newPassword string) {
+	u.Password = newPassword
 }
 
-func (u *user) printInfo() {
-	fmt.Printf("Name: %v\nAge: %v\nMail: %v\nPassword: %v\n", u.name, u.age, u.mail, u.password)
+func (u *User) PrintInfo() {
+	fmt.Printf("Name: %v\nSurname: %v\nAge: %v\nMail: %v\nPassword: %v\n", u.Name, u.Surname, u.Age, u.Email, u.Password)
 }
 
 func main() {
-	u1 := user{"Jacobo", 20, "jevar", "1323"}
-	u1.printInfo()
-	u1.setName("Juan")
-	u1.printInfo()
+	user := User{
+		"Jacobo", "Rave", 19, "j@gmail.com", "hola",
+	}
+	user.PrintInfo()
+	user.ChangeName("Julio", "Lazio")
+	user.ChangeAge(20)
+	user.ChangeEmail("juan@gmail.com")
+	user.ChangePassword("pelicano")
+	user.PrintInfo()
 }

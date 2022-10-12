@@ -2,16 +2,16 @@ package main
 
 import "fmt"
 
-type myError struct {
+type Error struct {
 }
 
-func (e *myError) Error() string {
-	return "error: el salario ingresado no alcanza el minimo imponible"
+func (e *Error) Error() string {
+	return "El salario ingresado no alcanza el minimo imponible"
 }
 
 func main() {
-	salary := 100
+	var salary int = 200000
 	if salary < 150000 {
-		fmt.Println(&myError{})
+		fmt.Println(&Error{})
 	}
 }

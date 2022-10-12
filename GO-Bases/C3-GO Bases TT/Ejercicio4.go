@@ -61,6 +61,7 @@ func main() {
 	v1 := rand.Perm(100)
 	v2 := rand.Perm(1000)
 	v3 := rand.Perm(100000)
+
 	c := make(chan int)
 	go BubbleSort(v1, c)
 	go insertionsort(v1, c)
@@ -69,6 +70,7 @@ func main() {
 	for i := 0; i < 3; i++ {
 		<-c
 	}
+
 	fmt.Println()
 	go BubbleSort(v2, c)
 	go insertionsort(v2, c)

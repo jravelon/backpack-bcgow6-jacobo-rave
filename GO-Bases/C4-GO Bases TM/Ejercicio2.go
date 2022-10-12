@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	salary := 100
+	var salary int = 200000
 	if salary < 150000 {
-		fmt.Println(errors.New("error: el salario ingresado no alcanza el minimo imponible"))
+		err := errors.New("El salario ingresado no alcanza el minimo imponible")
+		fmt.Println(err)
 	}
 }
