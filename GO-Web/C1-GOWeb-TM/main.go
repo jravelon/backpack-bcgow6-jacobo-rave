@@ -8,12 +8,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Fecha struct {
+type fecha struct {
 	Año int
 	Mes string
 	Día int
 }
-type Users struct {
+type users struct {
 	Id            int
 	Nombre        string
 	Apellido      string
@@ -21,7 +21,7 @@ type Users struct {
 	Edad          int
 	Altura        float64
 	Activo        bool
-	FechaCreacion Fecha
+	FechaCreacion fecha
 }
 
 func Salute(ctx *gin.Context) {
@@ -30,11 +30,11 @@ func Salute(ctx *gin.Context) {
 
 func GetAll(ctx *gin.Context) {
 	jsonData, _ := os.ReadFile("Users.json")
-	var u Users
+	var u users
 	if err := json.Unmarshal(jsonData, &u); err != nil {
 		log.Fatal(err)
 	}
-	UsersEj := []Users{u}
+	UsersEj := []users{u}
 	ctx.JSON(200, UsersEj)
 }
 

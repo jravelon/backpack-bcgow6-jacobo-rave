@@ -1,8 +1,6 @@
 package service
 
-import (
-	"errors"
-)
+import "errors"
 
 type Bookings interface {
 	// Create create a new Ticket
@@ -33,7 +31,7 @@ func NewBookings(Tickets []Ticket) Bookings {
 func (b *bookings) Create(t Ticket) (Ticket, error) {
 	for _, value := range b.Tickets {
 		if value.Id == t.Id {
-			return Ticket{}, errors.New("Id de ticket ya existente")
+			return Ticket{}, errors.New("id de ticket ya existente")
 		}
 	}
 	b.Tickets = append(b.Tickets, t)
@@ -46,7 +44,7 @@ func (b *bookings) Read(id int) (Ticket, error) {
 			return value, nil
 		}
 	}
-	return Ticket{}, errors.New("Id de ticket no existente")
+	return Ticket{}, errors.New("id de ticket no existente")
 }
 
 func (b *bookings) Update(id int, t Ticket) (Ticket, error) {
@@ -56,7 +54,7 @@ func (b *bookings) Update(id int, t Ticket) (Ticket, error) {
 			return value, nil
 		}
 	}
-	return Ticket{}, errors.New("Id de ticket no existente")
+	return Ticket{}, errors.New("id de ticket no existente")
 }
 
 func (b *bookings) Delete(id int) (int, error) {
@@ -66,5 +64,5 @@ func (b *bookings) Delete(id int) (int, error) {
 			return id, nil
 		}
 	}
-	return 0, errors.New("Id de ticket no existente")
+	return 0, errors.New("id de ticket no existente")
 }

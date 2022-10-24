@@ -1,12 +1,5 @@
 package main
 
-import (
-	"encoding/json"
-	"fmt"
-	"log"
-	"os"
-)
-
 type Fecha struct {
 	Año int
 	Mes string
@@ -23,6 +16,7 @@ type Users struct {
 	FechaCreacion Fecha
 }
 
+/*
 func main() {
 
 	jsonData, _ := os.ReadFile("Users.json")
@@ -34,4 +28,4 @@ func main() {
 	fmt.Println("Product:", u)
 	fmt.Println("Product: ", u.Email)
 
-}
+}*/
